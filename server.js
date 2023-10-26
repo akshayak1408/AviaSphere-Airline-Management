@@ -158,7 +158,7 @@
 
 
 
-
+const session = require('express-session');
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
@@ -184,12 +184,18 @@ db.connect((err) => {
     console.log('Connected to MySQL');
 });
 
-
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname+'/register.html');
+    res.sendFile(__dirname+'/public/home.html');
+});
+
+app.get('/login',(req,res)=>{
+    res.sendFile(__dirname+'/public/login.html');
+});
+app.get('/register',(req,res)=>{
+    res.sendFile(__dirname+'/public/register.html');
 });
 // Serve your static files from the 'public' directory
-// app.use(express.static('public'));
+app.use(express.static('public'));
 
 // Add middleware to handle CORS if necessary
 app.use((req, res, next) => {
@@ -198,6 +204,27 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
+
+// Assuming you get 'username' and 'password' from the login form
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    // Check if the provided 'username' (email) and 'password' match a record in the database
+    const loginQuery = 'SELECT * FROM register WHERE email = ? AND password = ?';
+    
+    db.query(loginQuery, [username, password], (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            res.status(500).json({ error: 'An error occurred during login' });
+        } else if (results.length > 0) {
+            res.status(200).json({ message: 'Login successful' });
+        } else {
+            res.status(401).json({ error: 'Invalid credentials' });
+        }
+    });
+});
+
+
 
 // Handle the POST request for the registration form
 app.post('/register', (req, res) => {

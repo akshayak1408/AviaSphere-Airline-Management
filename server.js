@@ -164,9 +164,10 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
+const PORT = process.env.PORT || 3000;
 // Create a MySQL connection
 const db = mysql.createConnection({
     host: 'localhost',
@@ -183,8 +184,12 @@ db.connect((err) => {
     console.log('Connected to MySQL');
 });
 
+
+app.get('/',(req,res)=>{
+    res.sendFile(__dirname+'/register.html');
+});
 // Serve your static files from the 'public' directory
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 // Add middleware to handle CORS if necessary
 app.use((req, res, next) => {
@@ -195,7 +200,7 @@ app.use((req, res, next) => {
 });
 
 // Handle the POST request for the registration form
-app.post('/registers', (req, res) => {
+app.post('/register', (req, res) => {
     const { email, name, password } = req.body;
 
     // Insert the data into the MySQL database
@@ -210,7 +215,7 @@ app.post('/registers', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 3000;
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

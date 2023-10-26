@@ -1,49 +1,217 @@
-var express = require("express");
-var router = express.Router();
-var mysql = require("mysql");
+// const express = require('express');
+// const mysql = require('mysql');
+// const bodyParser = require('body-parser');
+// const app = express();
+
+// // Create a MySQL connection
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'Pra123@bab',
+//     database: 'project',
+// });
+
+// db.connect((err) => {
+//     if (err) {
+//         console.error('Error connecting to MySQL:', err);
+//         return;
+//     }
+//     console.log('Connected to MySQL');
+// });
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+
+// app.use(express.static('public')); // Assuming your HTML file is in a 'public' directory
+
+// app.post('/register', (req, res) => {
+//     const { name, email, password } = req.body;
+//     const insertQuery = 'INSERT INTO register (email, name, password) VALUES (?, ?, ?)';
+//     db.query(insertQuery, [email, name, password], (err, results) => {
+//         if (err) {
+//             console.error('Error inserting data:', err);
+//             res.status(500).json({ error: 'An error occurred during registration' });
+//         } else {
+//             res.status(200).json({ message: 'Registration successful' });
+//         }
+//     });
+// });
+
+// const PORT = process.env.PORT || 3000;
+
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`);
+// });
 
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Pra123@bab",
-  database: "project",
-});
+
+
+// const express = require('express');
+// const mysql = require('mysql2');
+// const bodyParser = require('body-parser');
+// const app = express();
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+
+// // Create a MySQL connection
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'Pra123@bab',
+//     database: 'project',
+// });
+
+// db.connect((err) => {
+//     if (err) {
+//         console.error('Error connecting to MySQL:', err);
+//         return;
+//     }
+//     console.log('Connected to MySQL');
+// });
+
+// // Serve static files (e.g., your HTML file)
+// app.use(express.static('public'));
+
+// app.post('/registers', (req, res) => {
+//     const { email, name, password } = req.body;
+
+//     // Insert the data into the MySQL database
+//     const insertQuery = 'INSERT INTO register (email, name, password) VALUES ("pra123@gmail.com", "prateek", "12345")';
+//     db.query(insertQuery, [email, name, password], (err, results) => {
+//         if (err) {
+//             console.error('Error inserting data:', err);
+//             res.status(500).json({ error: 'An error occurred during registration' });
+//         } else {
+//             res.status(200).json({ message: 'Registration successful' });
+//         }
+//     });
+// });
+
+// const PORT = process.env.PORT || 3000;
+
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`);
+// });
+
+
+
+
+
+// const express = require('express');
+// const mysql = require('mysql2');
+// const bodyParser = require('body-parser');
+// const app = express();
+
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+
+// // Create a MySQL connection
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'Pra123@bab',
+//     database: 'project',
+// });
+
+// db.connect((err) => {
+//     if (err) {
+//         console.error('Error connecting to MySQL:', err);
+//         return;
+//     }
+//     console.log('Connected to MySQL');
+// });
+
+// // Serve static files (e.g., your HTML file)
+// app.use(express.static('public'));
+
+// // Add middleware to handle CORS if necessary
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//     next();
+// });
+
+// app.post('/register', (req, res) => {
+//     const { name, email, password } = req.body;
+
+//     // Insert the data into the MySQL database
+//     const insertQuery = 'INSERT INTO register (name, email, password) VALUES (?, ?, ?)';
+//     db.query(insertQuery, [name, email, password], (err, results) => {
+//         if (err) {
+//             console.error('Error inserting data:', err);
+//             res.status(500).json({ error: 'An error occurred during registration' });
+//         } else {
+//             res.status(200).json({ message: 'Registration successful' });
+//         }
+//     });
+// });
+
+// const PORT = process.env.PORT || 3000;
+
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`);
+// });
+
+
+
+
+
+
+const express = require('express');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
-router.use(bodyParser.urlencoded({ extended: true }));
+const app = express();
 
-connection.connect(function (err) {
-  if (err) throw err;
-  console.log("connected!");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Create a MySQL connection
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'Pra123@bab',
+    database: 'project',
 });
-var a=3;
 
-// inserting into register table
-router.post('/addPassenger', function (req, res, next) {//inserting name, email and password
-    // console.log("hello");
-    const PassengerId=req.body.name;
-  const email=req.body.email;
-  const password=req.body.password;
-//   const customerAddress=req.body.address;
-//   const custPhone=req.body.c_phone;
-//   const custEmail=req.body.email;
-//   console.log(PassengerId);
-    var query = `insert into register values(${email},'${PassengerId}','${password}')`;
-    // var query1= `insert into customer_phone values(${customerId},${custPhone})`;
-    // var query2=`insert into customer_email values(${customerId},'${custEmail}');`
-    //  console.log(PassengerId);
-    connection.query(query, function (err, rows, fields) {
-      if (err) throw err;
-      // res.json(rows);
-      
+db.connect((err) => {
+    if (err) {
+        console.error('Error connecting to MySQL:', err);
+        return;
+    }
+    console.log('Connected to MySQL');
+});
+
+// Serve your static files from the 'public' directory
+app.use(express.static('public'));
+
+// Add middleware to handle CORS if necessary
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
+// Handle the POST request for the registration form
+app.post('/registers', (req, res) => {
+    const { email, name, password } = req.body;
+
+    // Insert the data into the MySQL database
+    const insertQuery = 'INSERT INTO register (email, name, password) VALUES (?, ?, ?)';
+    db.query(insertQuery, [email, name, password], (err, results) => {
+        if (err) {
+            console.error('Error inserting data:', err);
+            res.status(500).json({ error: 'An error occurred during registration' });
+        } else {
+            res.status(200).json({ message: 'Registration successful' });
+        }
     });
-    // connection.query(query1, function (err, rows, fields) {
-    //   if (err) throw err;
-    //   // res.json(rows);
-    // });
-    // connection.query(query2, function (err, rows, fields) {
-    //   if (err) throw err;
-    //   // res.json(rows);
-    //   res.render("index");
-    // });
-  });
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

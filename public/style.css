@@ -1,3 +1,11 @@
+body{
+  /* background: #c86464; */
+  background-image: url('./jetblue-airways.jpg');
+  background-size: cover;
+  font-family: 'PT Sans', sans-serif;
+}
+
+
 .navbar, .home
 {
     background: #001d37;
@@ -24,10 +32,7 @@ body
 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
-body{
-  background: #fff;
-  font-family: 'PT Sans', sans-serif;
-}
+
 h2{
   padding-top: 1.5rem;
 }
@@ -70,7 +75,7 @@ a:hover{
     
     background-color: #df8c96;
     border-color: #df8c96;
-  transition: .3s;
+    transition: .3s;
 
 }
 

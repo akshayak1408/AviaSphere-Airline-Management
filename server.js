@@ -188,6 +188,8 @@ app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/public/home.html');
 });
 
+
+
 app.get('/login',(req,res)=>{
     res.sendFile(__dirname+'/public/login.html');
 });
@@ -217,14 +219,20 @@ app.post('/login', (req, res) => {
             console.error('Error executing query:', err);
             res.status(500).json({ error: 'An error occurred during login' });
         } else if (results.length > 0) {
-            res.status(200).json({ message: 'Login successful' });
+            // res.status(200).json({ message: 'Login successful' });
+            res.redirect("/welcome");
         } else {
             res.status(401).json({ error: 'Invalid credentials' });
+            res.redirect("/");
         }
+        res.end();
     });
 });
 
-
+// when login is success
+app.get('/welcome',(req,res)=>{
+    res.sendFile(__dirname+'/public/welcome.html');
+});
 
 // Handle the POST request for the registration form
 app.post('/register', (req, res) => {
@@ -237,11 +245,19 @@ app.post('/register', (req, res) => {
             console.error('Error inserting data:', err);
             res.status(500).json({ error: 'An error occurred during registration' });
         } else {
-            res.status(200).json({ message: 'Registration successful' });
+            res.redirect("/login");
+
+            // res.redirect(`/welcome?username=${username}&name=${results[0].name}`);
+
+            // res.status(200).json({ message: 'Registration successful' });
         }
     });
 });
 
+// when registration is success
+app.get('/login',(req,res)=>{
+    res.sendFile(__dirname+'/public/login.html');
+});
 
 
 app.listen(PORT, () => {

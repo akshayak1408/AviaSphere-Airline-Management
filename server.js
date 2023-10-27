@@ -162,10 +162,13 @@ const session = require('express-session');
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
+const path = require('path');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
+app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, '/views/admin.html'));
 
 const PORT = process.env.PORT || 3000;
 // Create a MySQL connection
@@ -196,6 +199,8 @@ app.get('/login',(req,res)=>{
 app.get('/register',(req,res)=>{
     res.sendFile(__dirname+'/public/register.html');
 });
+
+
 // Serve your static files from the 'public' directory
 app.use(express.static('public'));
 
@@ -233,6 +238,56 @@ app.post('/login', (req, res) => {
 app.get('/welcome',(req,res)=>{
     res.sendFile(__dirname+'/public/welcome.html');
 });
+
+
+
+// Assuming you get 'username' and 'password' from the adminlogin form
+app.post('/adminlogin', (req, res) => {
+    const { username, password } = req.body;
+
+    // Check if the provided 'username' (email) and 'password' match a record in the database
+    const loginQueryadmin = 'SELECT * FROM admin WHERE username = ? AND password = ?';
+    
+    db.query(loginQueryadmin, [username, password], (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            res.status(500).json({ error: 'An error occurred during login' });
+        } else if (results.length > 0) {
+            // res.status(200).json({ message: 'Login successful' });
+            res.redirect("/admin");
+        } else {
+            res.status(401).json({ error: 'Invalid credentials' });
+            res.redirect("/");
+        }
+        res.end();
+    });
+});
+
+// when adminlogin is success
+// app.get('/admin',(req,res)=>{
+//     res.sendFile(__dirname+'/public/admin.html');
+// });
+
+app.get('/admin', (req, res) => {
+    // Query the database to get user data
+    const getUsersQuery = 'SELECT * FROM register';
+    db.query(getUsersQuery, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.status(500).json({ error: 'An error occurred while fetching data' });
+        } else {
+            // Render the 'admin' view (admin.ejs) and pass the data as a variable
+            res.render('admin', { users: results });
+        }
+    });
+});
+
+
+
+
+
+
+
 
 // Handle the POST request for the registration form
 app.post('/register', (req, res) => {

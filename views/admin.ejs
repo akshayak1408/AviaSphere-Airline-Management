@@ -8,7 +8,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
 </head>
-<body style="background-image: none;">
+<body>
     <h1>Admin Dashboard</h1>
 <table>
     <tr>
@@ -22,5 +22,20 @@
         </tr>
     <% }); %>
 </table>
+
+<form action="/admin/add-user" method="post">
+    <h2>Add User</h2>
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Add User</button>
+</form>
+
+<form action="/admin/remove-user" method="post">
+    <h2>Remove User</h2>
+    <input type="email" name="email" placeholder="Email to remove" required>
+    <button type="submit">Remove User</button>
+</form>
+
 </body>
 </html>

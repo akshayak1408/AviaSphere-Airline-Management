@@ -1,6 +1,12 @@
+/* body .admindash
+{
+  
+} */
+
 body{
   /* background: #c86464; */
-  background-image: url('./jetblue-airways.jpg');
+  /* background-image: url('./jetblue-airways.jpg'); */
+  background-image: url('./flightbg-1.png');
   background-size: cover;
   font-family: 'PT Sans', sans-serif;
 }
@@ -14,7 +20,7 @@ body{
 .col
 {
     display: flex;
-    margin: 3px;
+    /* margin: 3px; */
     /* padding: 8px; */
 }
 /* 
@@ -79,3 +85,13 @@ a:hover{
 
 }
 
+.card-title {
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.card-text {
+  color: #333;
+  margin-bottom: 10px;
+}

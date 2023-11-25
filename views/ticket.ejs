@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fare Details</title>
+    <!-- Include necessary CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>Ticket</h1>
+    
+    <div>
+        <h2>Passenger Details</h2>
+        <p>Name: <%= passengerDetails.name %></p>
+        <p>Age: <%= passengerDetails.age %></p>
+        <!-- Display other relevant passenger details -->
+    </div>
+
+    <div>
+        <h2>Flight Details</h2>
+        <p>Flight Number: <%= flightDetails.flightNumber %></p>
+        <p>Departure: <%= flightDetails.departure %></p>
+        <p>Destination: <%= flightDetails.destination %></p>
+        <!-- Display other relevant flight details -->
+    </div>
+
+    <div>
+        <h2>Fare Details</h2>
+        <p>Base Fare: <%= baseFare %></p>
+        <p>Taxes: <%= taxes %></p>
+        <p>Add-ons: <%= addons %></p>
+        <p>Total Fare: <%= totalFare %></p>
+    </div>
+
+   
+
+    <p>Thank you for choosing our services!</p>
+</body>
+</html>

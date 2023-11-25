@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add-Ons Page</title>
+    <!-- Include necessary CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Add-Ons</h1>
+    <h2>Flight ID: <%= flightDetails.flight_id %></h2>
+    
+    <!-- <ul>
+        <% for (let i = 1; i <= passengerCount; i++) { %>
+            <li>
+                Passenger <%= i %>:
+                <ul>
+                    <li>Name: <%= flightDetails['passengerName' + i] %></li>
+                    <li>Age: <%= flightDetails['age' + i] %></li>
+                    <li>Email: <%= flightDetails['email' + i] %></li>
+                    <li>Contact: <%= flightDetails['contact' + i] %></li>
+                    ... display other passenger details ...
+                </ul>
+            </li>
+        <% } %>
+    </ul> -->
+
+    <!-- Add-ons selection form -->
+    <!-- <form action="/confirm-addons" method="POST">
+        <% for (let i = 1; i <= passengerCount; i++) { %>
+            <h2>Add-ons for Passenger <%= i %></h2>
+            <label for="seatPreference<%= i %>">Seat Preference:</label>
+            <input type="text" id="seatPreference<%= i %>" name="seatPreference<%= i %>" required><br>
+
+            <label for="mealPreference<%= i %>">Meal Preference:</label>
+            <input type="text" id="mealPreference<%= i %>" name="mealPreference<%= i %>" required><br>
+
+            <label for="xlSeatbelt<%= i %>">XL-Seatbelt:</label>
+            <input type="checkbox" id="xlSeatbelt<%= i %>" name="xlSeatbelt<%= i %>"><br>
+        <% } %>
+
+        <button type="submit">Confirm Add-ons</button>
+    </form> -->
+    <form action="/confirm-addons" method="POST">
+    <% for (let i = 0; i < passengerCount; i++) { %>
+        <h2>Add-ons for Passenger <%= i + 1 %></h2>
+        <label for="seatPreference<%= i %>">Seat Preference:</label>
+        <input type="text" id="seatPreference<%= i %>" name="seatPreference" required><br>
+
+        <label for="mealPreference<%= i %>">Meal Preference:</label>
+        <input type="text" id="mealPreference<%= i %>" name="mealPreference" required><br>
+
+        <label for="xlSeatbelt<%= i %>">XL-Seatbelt:</label>
+        <input type="text" id="xlSeatbelt<%= i %>" name="xlSeatbelt" required><br>
+
+        <label for="childSeatbelt<%= i %>">Child Seatbelt:</label>
+        <input type="text" id="childSeatbelt<%= i %>" name="childSeatbelt" required><br>
+    <% } %>
+    <button type="submit">Confirm Add-ons</button>
+</form>
+    
+</body>
+</html>

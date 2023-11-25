@@ -27,13 +27,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./login.html" style="color: white;">Login</a>
+                        <a class="nav-link active" aria-current="page" href="./login.html"
+                            style="color: white;">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./register.html" style="color: white;">Register</a>
+                        <a class="nav-link active" aria-current="page" href="./register.html"
+                            style="color: white;">Register</a>
                     </li>
-                    <li class="nav-item"> 
-                        <a class="nav-link" href="#" style="color: white;">Flights</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/searchFlights" style="color: white;">Flights</a>
                     </li>
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -62,53 +64,41 @@
             </div>
         </div>
     </nav>
-<!-- <br>
+    <!-- <br>
     <br> -->
+
+    
+    
     <div class="home">
         <h1 style="color: white;">Millions of flights. One simple search.</h1>
-        <div class="row">
+        <form class="row" method="GET" action="/search">
             <div class="col">
-                <form class="d-flex" role="textbox">
-                    <input class="form-control me-2" type="text" placeholder="From" aria-label="Search">
-                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-                </form>
+                <input class="form-control" type="text" name="from" placeholder="From" aria-label="From">
             </div>
             <div class="col">
-                <form class="d-flex" role="textbox">
-                    <input class="form-control me-2" type="text" placeholder="To" aria-label="Search">
-                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-                </form>
+                <input class="form-control" type="text" name="to" placeholder="To" aria-label="To">
             </div>
             <div class="col">
-                <form class="d-flex" role="textbox">
-                    <input class="form-control me-2" type="text" placeholder="Depart" aria-label="Search">
-                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-                </form>
+                <input class="form-control" type="text" name="departure" placeholder="Depart" aria-label="Depart">
+            </div>
+            <div class="col">
+                <input class="form-control" type="text" name="return" placeholder="Return" aria-label="Return">
+            </div>
+            <div class="col">
+                <input class="form-control" type="number" name="travelers" placeholder="No. of Travellers"
+                    aria-label="Travelers">
+                <button class="btn" type="submit" style="color: white;">Search</button>
+            </div>
+        </form>
+    </div>
 
-            </div>
-            <div class="col">
-                <form class="d-flex" role="textbox">
-                    <input class="form-control me-2" type="text" placeholder="Return" aria-label="Search">
-                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-                </form>
-            </div>
-            <div class="col">
-                <form class="d-flex" role="textbox">
-                    <input class="form-control me-2" type="text" placeholder="No. of Travellers" aria-label="Search">
-                    <button class="btn" type="submit" style="color: white;">Search</button>
-                </form>
-            </div>
+        <div class="bg">
+            <!-- <img src="./airplane-7116299_640.jpg" alt="image-landing" style="align-items: center; margin: 100px;"> -->
+
         </div>
-        <br><br><br>    
-    </div>
-
-    <div class="bg">
-        <!-- <img src="./airplane-7116299_640.jpg" alt="image-landing" style="align-items: center; margin: 100px;"> -->
-    
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>
